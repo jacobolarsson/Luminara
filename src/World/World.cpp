@@ -13,7 +13,9 @@ void World::Initialize()
 	std::shared_ptr<Shader> shader = std::make_shared<Shader>("data/shaders/standard.vert",
 															  "data/shaders/standard.frag");
 
-	std::shared_ptr<Material> mat = std::make_shared<Material>(shader);
+	std::shared_ptr<Texture> tex = std::make_shared<Texture>("data/textures/pepe.png");
+	std::shared_ptr<Material> mat = std::make_shared<Material>(shader, tex);
+
 	std::shared_ptr<Object> obj = std::make_shared<Object>(trans, mesh, mat);
 
 	AddObject(obj);

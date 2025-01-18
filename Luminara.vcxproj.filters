@@ -39,6 +39,9 @@
     <ClCompile Include="src\Time\Time.cpp">
       <Filter>Time</Filter>
     </ClCompile>
+    <ClCompile Include="src\Texture\Texture.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -80,6 +83,9 @@
     <Filter Include="Time">
       <UniqueIdentifier>{6d6725d6-2991-4fd2-9dfe-9b6fb43836b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{26d48fa3-04ef-4319-ae8c-d5d135d46751}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Window\Window.h">
@@ -120,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="src\Time\Time.h">
       <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture\Texture.h">
+      <Filter>Texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
