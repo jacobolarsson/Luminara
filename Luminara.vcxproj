@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Camera\Camera.cpp" />
     <ClCompile Include="src\Engine\Engine.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\Input\Input.cpp" />
@@ -146,10 +147,13 @@
     <ClCompile Include="src\Object\Object.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Shader\Shader.cpp" />
+    <ClCompile Include="src\Time\Time.cpp" />
+    <ClCompile Include="src\Transform\Transform.cpp" />
     <ClCompile Include="src\Window\Window.cpp" />
     <ClCompile Include="src\World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Camera\Camera.h" />
     <ClInclude Include="src\Engine\Engine.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\Material\Material.h" />
@@ -158,6 +162,7 @@
     <ClInclude Include="src\Object\Object.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Shader\Shader.h" />
+    <ClInclude Include="src\Time\Time.h" />
     <ClInclude Include="src\Transform\Transform.h" />
     <ClInclude Include="src\Window\Window.h" />
     <ClInclude Include="src\World\World.h" />

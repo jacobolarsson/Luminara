@@ -30,6 +30,15 @@
     <ClCompile Include="src\Material\Material.cpp">
       <Filter>Material</Filter>
     </ClCompile>
+    <ClCompile Include="src\Camera\Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transform\Transform.cpp">
+      <Filter>Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Time\Time.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -65,6 +74,12 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{51352c5e-a914-4ac2-9d23-7027dff6d4f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{8f2e5aa5-21ff-4883-8166-dec83c47e658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{6d6725d6-2991-4fd2-9dfe-9b6fb43836b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Window\Window.h">
@@ -99,6 +114,12 @@
     </ClInclude>
     <ClInclude Include="src\Renderer\Renderer.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Camera\Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Time\Time.h">
+      <Filter>Time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

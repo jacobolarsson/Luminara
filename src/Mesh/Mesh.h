@@ -16,7 +16,7 @@ public:
 		, m_ebo(0u)
 	{}
 
-	void Load();
+	void Upload();
 	void Bind() const;
 
 private:

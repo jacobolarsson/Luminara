@@ -1,6 +1,6 @@
 #include "Object.h"
 
-void Object::LoadMesh()
+void Object::UploadMesh()
 {
-	m_mesh->Load();
+	m_mesh->Upload();
 }

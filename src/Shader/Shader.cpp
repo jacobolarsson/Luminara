@@ -121,3 +121,8 @@ void Shader::Use() const
         std::cerr << "Shader handle id not set" << std::endl;
     }
 }
+
+void Shader::UploadMat4x4(const char* name, mat4x4 const& mat) const
+{
+    glProgramUniformMatrix4fv(m_id, glGetUniformLocation(m_id, name), 1, GL_FALSE, &mat[0][0]);
+}

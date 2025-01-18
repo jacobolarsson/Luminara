@@ -15,8 +15,9 @@ public:
 		, m_material(material)
 	{}
 
-	void LoadMesh();
+	void UploadMesh();
 
+	inline Transform const& GetTransform() const { return m_transform; }
 	inline std::shared_ptr<Mesh> const& GetMesh() const { return m_mesh; }
 	inline std::shared_ptr<Material> const& GetMaterial() const { return m_material; }
 

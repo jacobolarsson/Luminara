@@ -2,19 +2,10 @@
 
 #include "../Mesh/Mesh.h"
 #include "../Material/Material.h"
+#include "../Object/Object.h"
 
 #include <vector>
 #include <memory>
-
-struct RenderObject
-{
-	RenderObject(std::shared_ptr<Mesh> mes, std::shared_ptr<Material> mat)
-		: mesh(mes), material(mat)
-	{}
-
-	std::shared_ptr<Mesh> mesh = nullptr;
-	std::shared_ptr<Material> material = nullptr;
-};
 
 class Renderer
 {
@@ -24,10 +15,11 @@ public:
 	static void Initialize();
 	static void Update();
 
-	static void AddRenderObject(std::shared_ptr<Mesh> mesh, std::shared_ptr<Material> material);
+	static void AddRenderObject(std::shared_ptr<Object> obj);
+	static void GetViewportSize(int& width, int& height);
 
 private:
-	static void Draw(RenderObject const& renderObj);
+	static void Draw(std::shared_ptr<Object> renderObj);
 
-	static std::vector<RenderObject> m_renderQueue;
+	static std::vector<std::shared_ptr<Object>> m_renderQueue;
 };

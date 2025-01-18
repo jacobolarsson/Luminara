@@ -2,13 +2,6 @@
 
 struct GLFWwindow;
 
-struct WindowData
-{
-	int width;
-	int height;
-	const char* title;
-};
-
 class Window
 {
 public:
@@ -22,5 +15,4 @@ public:
 
 private:
 	static GLFWwindow* m_window;
-	static WindowData m_data;
 };

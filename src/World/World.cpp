@@ -1,5 +1,6 @@
 #include "World.h"
 #include "../Renderer/Renderer.h"
+#include "../Camera/Camera.h"
 
 std::unordered_set<std::shared_ptr<Object>> World::m_objects;
 
@@ -7,7 +8,7 @@ void World::Initialize()
 {
 	Transform trans;
 	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
-	mesh->Load();
+	mesh->Upload();
 
 	std::shared_ptr<Shader> shader = std::make_shared<Shader>("data/shaders/standard.vert",
 															  "data/shaders/standard.frag");
@@ -16,6 +17,9 @@ void World::Initialize()
 	std::shared_ptr<Object> obj = std::make_shared<Object>(trans, mesh, mat);
 
 	AddObject(obj);
+
+	std::shared_ptr<Camera> cam = std::make_shared<Camera>();
+	Camera::SetActiveCamera(cam);
 }
 
 void World::AddObject(std::shared_ptr<Object> obj)
@@ -27,7 +31,7 @@ void World::AddObject(std::shared_ptr<Object> obj)
 
 	m_objects.insert(obj);
 
-	Renderer::AddRenderObject(obj->GetMesh(), obj->GetMaterial());
+	Renderer::AddRenderObject(obj);
 }
 
 void World::RemoveObject(std::shared_ptr<Object> obj)
