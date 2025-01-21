@@ -126,3 +126,8 @@ void Shader::UploadMat4x4(const char* name, mat4x4 const& mat) const
 {
     glProgramUniformMatrix4fv(m_id, glGetUniformLocation(m_id, name), 1, GL_FALSE, &mat[0][0]);
 }
+
+void Shader::UploadVec3(const char* name, vec3 const& vec) const
+{
+    glProgramUniform3fv(m_id, glGetUniformLocation(m_id, name), 1, &vec[0]);
+}

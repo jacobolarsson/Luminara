@@ -9,13 +9,13 @@
 class Object
 {
 public:
-	Object(Transform const& transform, std::shared_ptr<Mesh> mesh, std::shared_ptr<Material> material)
+	Object(Transform const& transform, std::shared_ptr<Mesh> mesh = nullptr, std::shared_ptr<Material> material = nullptr)
 		: m_transform(transform)
 		, m_mesh(mesh)
 		, m_material(material)
 	{}
-
-	void UploadMesh();
+	virtual ~Object() {}
+	virtual void Update();
 
 	inline Transform const& GetTransform() const { return m_transform; }
 	inline std::shared_ptr<Mesh> const& GetMesh() const { return m_mesh; }

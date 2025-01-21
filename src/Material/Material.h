@@ -6,6 +6,8 @@
 
 #include <memory>
 
+class Light;
+
 class Material
 {
 public:
@@ -15,7 +17,8 @@ public:
 	{}
 
 	void Use() const;
-	void UploadUniforms(Transform const& transform, std::shared_ptr<Camera> cam) const;
+	void UploadShaderMtxData(Transform const& transform, std::shared_ptr<Camera> cam) const;
+	void UploadShaderLightData(std::shared_ptr<Light> light) const;
 	void UploadTexture() const;
 	void BindTexture() const;
 

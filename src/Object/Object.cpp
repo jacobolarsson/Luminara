@@ -1,6 +1,7 @@
 #include "Object.h"
 
-void Object::UploadMesh()
+#include <glad/glad.h>
+
+void Object::Update()
 {
-	m_mesh->Upload();
 }

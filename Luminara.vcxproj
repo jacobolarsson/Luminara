@@ -141,6 +141,7 @@
     <ClCompile Include="src\Engine\Engine.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\Input\Input.cpp" />
+    <ClCompile Include="src\Light\Light.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Material\Material.cpp" />
     <ClCompile Include="src\Mesh\Mesh.cpp" />
@@ -157,6 +158,8 @@
     <ClInclude Include="src\Camera\Camera.h" />
     <ClInclude Include="src\Engine\Engine.h" />
     <ClInclude Include="src\Input\Input.h" />
+    <ClInclude Include="src\Light\Light.h" />
+    <ClInclude Include="src\Light\LightTypes.h" />
     <ClInclude Include="src\Material\Material.h" />
     <ClInclude Include="src\Math\Math.h" />
     <ClInclude Include="src\Mesh\Mesh.h" />

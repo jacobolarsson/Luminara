@@ -5,9 +5,10 @@
 
 struct Vertex 
 {
-	Vertex(vec3 p, vec2 uv) : position(p), UV(uv) {}
+	Vertex(vec3 pos, vec3 norm, vec2 uv) : position(pos), normal(norm), UV(uv) {}
 
 	vec3 position;
+	vec3 normal;
 	vec2 UV;
 };
 
@@ -26,6 +27,8 @@ public:
 
 	void Upload();
 	void Bind() const;
+
+	inline size_t GetIdxCount() const { return m_indices.size(); }
 
 private:
 	std::vector<Vertex> m_vertices;

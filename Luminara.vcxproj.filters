@@ -42,6 +42,9 @@
     <ClCompile Include="src\Texture\Texture.cpp">
       <Filter>Texture</Filter>
     </ClCompile>
+    <ClCompile Include="src\Light\Light.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -86,6 +89,9 @@
     <Filter Include="Texture">
       <UniqueIdentifier>{26d48fa3-04ef-4319-ae8c-d5d135d46751}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{d9fad0cd-37a9-43ea-b150-33b5c08a45b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Window\Window.h">
@@ -129,6 +135,12 @@
     </ClInclude>
     <ClInclude Include="src\Texture\Texture.h">
       <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Light\Light.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Light\LightTypes.h">
+      <Filter>Light</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
