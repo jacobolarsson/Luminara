@@ -36,29 +36,23 @@ void OnMouseMove(GLFWwindow* window, double xposIn, double yposIn)
 
     glfwSetInputMode(Window::GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-    float sensitivity = 100.0f * Time::GetDeltaTime();
+    float sensitivity = 0.1f;
     xoffset *= sensitivity;
     yoffset *= sensitivity;
 
     std::shared_ptr<Camera> activeCam = Camera::GetActiveCamera();
-    vec3 oldRotation = activeCam->GetRotation();
-    vec3 newRotation = oldRotation + vec3(yoffset, xoffset, 0.0f);
-
-    activeCam->SetRotation(newRotation);
-
-    //// make sure that when pitch is out of bounds, screen doesn't get flipped
-    //if (pitch > 89.0f)
-    //    pitch = 89.0f;
-    //if (pitch < -89.0f)
-    //    pitch = -89.0f;
+    // Update pitch and yaw
+    vec3 newRotation = activeCam->GetRotation() + vec3(yoffset, xoffset, 0.0f);
+    activeCam->SetRotation(newRotation); 
 
     float pitch = activeCam->GetRotation().x;
     float yaw = activeCam->GetRotation().y;
 
+    // Compute new camera direction based on pitch and yaw
     glm::vec3 dir;
-    dir.x = sin(glm::radians(-yaw)) * cos(glm::radians(pitch));
+    dir.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     dir.y = sin(glm::radians(pitch));
-    dir.z = cos(glm::radians(-yaw)) * cos(glm::radians(pitch));
+    dir.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 
     activeCam->SetDirection(dir);
 }

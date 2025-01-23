@@ -23,6 +23,7 @@ void Engine::Run()
     {
         Time::Update();
         Input::Update();
+        World::Update();
         Renderer::Update();
         Window::SwapBuffers();
     }

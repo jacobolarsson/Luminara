@@ -10,7 +10,9 @@ enum class LightType
 struct PointLightData
 {
 	vec3 color;
-	float attenuation;
+	float constAtt;
+	float linAtt;
+	float quadAtt;
 };
 
 struct DirLightData

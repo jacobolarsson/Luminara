@@ -21,7 +21,11 @@ public:
 	inline std::shared_ptr<Mesh> const& GetMesh() const { return m_mesh; }
 	inline std::shared_ptr<Material> const& GetMaterial() const { return m_material; }
 
-private:
+	inline void SetTransform(Transform const& transform) { m_transform = transform; }
+	inline void SetMesh(std::shared_ptr<Mesh> mesh) { m_mesh = mesh; }
+	inline void SetMaterial(std::shared_ptr<Material> material) { m_material = material; }
+
+protected:
 	Transform m_transform;
 	std::shared_ptr<Mesh> m_mesh;
 	std::shared_ptr<Material> m_material;

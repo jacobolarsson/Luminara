@@ -11,11 +11,11 @@ void World::Initialize()
 	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
 	mesh->Upload();
 
-	std::shared_ptr<Shader> shader = std::make_shared<Shader>("data/shaders/lit.vert",
-															  "data/shaders/lit.frag");
+	std::shared_ptr<Shader> litShader = std::make_shared<Shader>("data/shaders/lit.vert",
+															     "data/shaders/lit.frag");
 
 	std::shared_ptr<Texture> tex = std::make_shared<Texture>("data/textures/pepe.png");
-	std::shared_ptr<Material> mat = std::make_shared<Material>(shader, tex);
+	std::shared_ptr<Material> mat = std::make_shared<Material>(litShader, tex);
 
 	std::shared_ptr<Object> obj = std::make_shared<Object>(trans, mesh, mat);
 
@@ -24,13 +24,33 @@ void World::Initialize()
 	std::shared_ptr<Camera> cam = std::make_shared<Camera>();
 	Camera::SetActiveCamera(cam);
 
-	LightData lightData;
-	lightData.dirData.direction = vec3(1.0f, 0.5f, 0.1f);
-	lightData.dirData.color = vec3(0.0f, 0.0f, 1.0f);
+	LightData pointLightData;
+	pointLightData.pointData.constAtt = 1.0f;
+	pointLightData.pointData.linAtt = 0.09f;
+	pointLightData.pointData.quadAtt = 0.032f;
+	pointLightData.pointData.color = { 1.0f, 1.0f, 1.0f };
 
-	std::shared_ptr<Object> dirLight = std::make_shared<Light>(Transform(), LightType::DIR, lightData);
+	Transform pointLightTrans({ -3.0f, 0.0f, 0.0f }, {0.0f, 0.0f, 0.0f}, {0.1f, 0.1f, 0.1f});
 
-	AddObject(dirLight);
+	std::shared_ptr<Object> pointLight = std::make_shared<Light>(pointLightTrans,
+																 LightType::POINT,
+																 pointLightData);
+
+	std::shared_ptr<Shader> lightShader = std::make_shared<Shader>("data/shaders/light.vert",
+															       "data/shaders/light.frag");
+	std::shared_ptr<Material> lightMat = std::make_shared<Material>(lightShader);
+
+	pointLight->SetMesh(mesh);
+	pointLight->SetMaterial(lightMat);
+
+	AddObject(pointLight);
+}
+
+void World::Update()
+{
+	for (std::shared_ptr<Object> obj : m_objects) {
+		obj->Update();
+	}
 }
 
 void World::AddObject(std::shared_ptr<Object> obj)

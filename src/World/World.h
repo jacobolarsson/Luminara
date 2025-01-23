@@ -11,6 +11,7 @@ public:
 	World() = delete;
 
 	static void Initialize();
+	static void Update();
 
 private:
 	static void AddObject(std::shared_ptr<Object> obj);

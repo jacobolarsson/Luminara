@@ -8,7 +8,7 @@ std::shared_ptr<Camera> Camera::m_activeCamera = nullptr;
 Camera::Camera()
 	: m_position(0.0f, 0.0f, 3.0f)
 	, m_direction(0.0f, 0.0f, -1.0f)
-	, m_rotation(0.0f, 180.0f, 0.0)
+	, m_rotation(0.0f, -90.0f, 0.0)
 	, m_fov(60.0f)
 	, m_near(0.01f)
 	, m_far(1000.0f)

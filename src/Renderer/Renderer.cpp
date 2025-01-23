@@ -46,8 +46,7 @@ void Renderer::GetViewportSize(int& width, int& height)
 
 void Renderer::DrawObject(std::shared_ptr<Object> object, std::shared_ptr<Camera> camera)
 {
-	object->GetMaterial()->UploadShaderLightData(m_lights[0]);
-	object->GetMaterial()->UploadShaderMtxData(object->GetTransform(), camera);
+	object->GetMaterial()->UploadShaderData(object->GetTransform(), camera, m_lights);
 
 	object->GetMaterial()->Use();
 	object->GetMaterial()->BindTexture();
