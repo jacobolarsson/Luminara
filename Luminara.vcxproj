@@ -145,6 +145,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Material\Material.cpp" />
     <ClCompile Include="src\Mesh\Mesh.cpp" />
+    <ClCompile Include="src\Model\Model.cpp" />
     <ClCompile Include="src\Object\Object.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Shader\Shader.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="src\Material\Material.h" />
     <ClInclude Include="src\Math\Math.h" />
     <ClInclude Include="src\Mesh\Mesh.h" />
+    <ClInclude Include="src\Model\Model.h" />
     <ClInclude Include="src\Object\Object.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Shader\Shader.h" />

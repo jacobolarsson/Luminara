@@ -5,6 +5,8 @@
 #include <fstream>
 #include <sstream>
 
+std::unordered_map<std::string, Shader> Shader::Shaders;
+
 unsigned CompileAttachShader(unsigned shaderId, const char* filename, unsigned shaderType)
 {
     // load shader file
@@ -92,7 +94,7 @@ unsigned LinkProgram(unsigned shaderId)
     return shaderId;
 }
 
-Shader::Shader(const char* vertFilename, const char* fragFilename) : m_id(0u)
+Shader::Shader(const char* name, const char* vertFilename, const char* fragFilename) : m_id(0u)
 {
     m_id = glCreateProgram();
     if (m_id == 0u) {
@@ -111,6 +113,8 @@ Shader::Shader(const char* vertFilename, const char* fragFilename) : m_id(0u)
         std::cerr << "Unable to link shader program." << std::endl;
         return;
     }
+
+    Shader::Shaders.insert({ std::string(name), *this });
 }
 
 void Shader::Use() const

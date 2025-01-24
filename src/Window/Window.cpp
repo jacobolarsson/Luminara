@@ -1,8 +1,12 @@
 #include "Window.h"
+#include "../Time/Time.h"
 
 #include <glad/glad.h>  
 #include <GLFW/glfw3.h>
+
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 GLFWwindow* Window::m_window;
 
@@ -45,5 +49,14 @@ bool Window::ShouldClose()
 
 void Window::SwapBuffers()
 {
+    // Limit framerate to 144 fps
+    size_t frameDurationMs = static_cast<size_t>(Time::GetDeltaTime() * 1000.0f);
+    size_t targetFrameDurationMs = static_cast<size_t>(1000.0f / 144.0f);
+
+    if (frameDurationMs < targetFrameDurationMs) {
+        size_t diff = targetFrameDurationMs - frameDurationMs;
+        std::this_thread::sleep_for(std::chrono::milliseconds(diff));
+    }
+
     glfwSwapBuffers(m_window);
 }

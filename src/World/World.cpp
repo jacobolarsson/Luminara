@@ -8,16 +8,16 @@ std::unordered_set<std::shared_ptr<Object>> World::m_objects;
 void World::Initialize()
 {
 	Transform trans;
-	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
-	mesh->Upload();
+	Mesh mesh;
+	mesh.Upload();
 
-	std::shared_ptr<Shader> litShader = std::make_shared<Shader>("data/shaders/lit.vert",
-															     "data/shaders/lit.frag");
+	std::vector<Mesh> meshes{ mesh };
 
-	std::shared_ptr<Texture> tex = std::make_shared<Texture>("data/textures/pepe.png");
-	std::shared_ptr<Material> mat = std::make_shared<Material>(litShader, tex);
+	Shader litShader("Lit", "data/shaders/lit.vert", "data/shaders/lit.frag");
+	Shader lightShader("Light", "data/shaders/light.vert", "data/shaders/light.frag");
 
-	std::shared_ptr<Object> obj = std::make_shared<Object>(trans, mesh, mat);
+	std::shared_ptr<Model> model = std::make_shared<Model>(meshes);
+	std::shared_ptr<Object> obj = std::make_shared<Object>(trans, model);
 
 	AddObject(obj);
 
@@ -35,13 +35,7 @@ void World::Initialize()
 	std::shared_ptr<Object> pointLight = std::make_shared<Light>(pointLightTrans,
 																 LightType::POINT,
 																 pointLightData);
-
-	std::shared_ptr<Shader> lightShader = std::make_shared<Shader>("data/shaders/light.vert",
-															       "data/shaders/light.frag");
-	std::shared_ptr<Material> lightMat = std::make_shared<Material>(lightShader);
-
-	pointLight->SetMesh(mesh);
-	pointLight->SetMaterial(lightMat);
+	pointLight->SetModel(model);
 
 	AddObject(pointLight);
 }
@@ -61,18 +55,20 @@ void World::AddObject(std::shared_ptr<Object> obj)
 	}
 
 	bool renderObj = true;
+	const char* shaderName = "Lit";
 
 	// Check if it's a light, add it to the renderer's lights container if it is
 	std::shared_ptr<Light> lightPtr(std::dynamic_pointer_cast<Light>(obj));
 	if (lightPtr) {
 		Renderer::AddLightObject(lightPtr);
 		renderObj = lightPtr->GetType() != LightType::DIR; // Don't render if it's directional
+		shaderName = "Light";
 	}
 
 	m_objects.insert(obj);
 
 	if (renderObj) {
-		Renderer::AddRenderObject(obj);
+		Renderer::AddRenderObject(RenderObject{ obj, shaderName });
 	}
 }
 

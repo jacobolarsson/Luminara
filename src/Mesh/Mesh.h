@@ -1,5 +1,6 @@
 #pragma once
 #include "../Math/Math.h"
+#include "../Material/Material.h"
 
 #include <vector>
 
@@ -26,13 +27,15 @@ public:
 	{}
 
 	void Upload();
-	void Bind() const;
+	void BindVao() const;
+	void Draw() const;
 
 	inline size_t GetIdxCount() const { return m_indices.size(); }
 
 private:
 	std::vector<Vertex> m_vertices;
 	std::vector<unsigned> m_indices;
+	Material m_material;
 
 	unsigned m_vao;
 	unsigned m_vbo;

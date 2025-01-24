@@ -45,6 +45,9 @@
     <ClCompile Include="src\Light\Light.cpp">
       <Filter>Light</Filter>
     </ClCompile>
+    <ClCompile Include="src\Model\Model.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -91,6 +94,9 @@
     </Filter>
     <Filter Include="Light">
       <UniqueIdentifier>{d9fad0cd-37a9-43ea-b150-33b5c08a45b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{b8247ac5-2a4b-48b9-a6e0-fe2aba8f3a9c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="src\Light\LightTypes.h">
       <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Model\Model.h">
+      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

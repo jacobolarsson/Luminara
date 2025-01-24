@@ -90,8 +90,16 @@ void Mesh::Upload()
 	glBindVertexArray(0u);
 }
 
-void Mesh::Bind() const
+void Mesh::BindVao() const
 {
 	glBindVertexArray(m_vao);
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
+}
+
+void Mesh::Draw() const
+{
+    m_material.BindTextures();
+    BindVao();
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    //glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
 }

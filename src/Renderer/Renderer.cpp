@@ -2,9 +2,11 @@
 #include "../Camera/Camera.h"
 #include "../Light/Light.h"
 
+#include <unordered_map>
+#include <string>
 #include <glad/glad.h>
 
-std::vector<std::shared_ptr<Object>> Renderer::m_renderQueue;
+std::vector<RenderObject> Renderer::m_renderQueue;
 std::vector<std::shared_ptr<Light>> Renderer::m_lights;
 
 void Renderer::Initialize()
@@ -20,14 +22,19 @@ void Renderer::Update()
 	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	for (std::shared_ptr<Object> renderObj : m_renderQueue) {
-		DrawObject(renderObj, Camera::GetActiveCamera());
+	// Retrieve the corresponding shader and draw each object in the render queue
+	for (RenderObject const& renderObj : m_renderQueue) {
+		Shader shader = Shader::Shaders.at(std::string(renderObj.shaderName));
+		Transform transform = renderObj.object->GetTransform();
+		std::shared_ptr<Camera> cam = Camera::GetActiveCamera();
+
+		renderObj.object->GetModel()->Draw(shader, transform, cam, m_lights.at(0));
 	}
 }
 
-void Renderer::AddRenderObject(std::shared_ptr<Object> obj)
+void Renderer::AddRenderObject(RenderObject const& renderObj)
 {
-	m_renderQueue.push_back(obj);
+	m_renderQueue.push_back(renderObj);
 }
 
 void Renderer::AddLightObject(std::shared_ptr<Light> light)
@@ -42,16 +49,4 @@ void Renderer::GetViewportSize(int& width, int& height)
 
 	width = viewportData[2];
 	height = viewportData[3];
-}
-
-void Renderer::DrawObject(std::shared_ptr<Object> object, std::shared_ptr<Camera> camera)
-{
-	object->GetMaterial()->UploadShaderData(object->GetTransform(), camera, m_lights);
-
-	object->GetMaterial()->Use();
-	object->GetMaterial()->BindTexture();
-	object->GetMesh()->Bind();
-
-	glDrawArrays(GL_TRIANGLES, 0, 36);
-	//glDrawElements(GL_TRIANGLES, object->GetMesh()->GetIdxCount(), GL_UNSIGNED_INT, 0);
 }
