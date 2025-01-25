@@ -17,7 +17,7 @@ void main()
 {
     vec3 lightVec_view = normalize(lightPos_view - fragPos_view);
 
-    vec3 ambient = 0.1 * lightColor;
+    vec3 ambient = 0.4 * lightColor;
     vec3 diffuse = lightColor * max(dot(normal_view, lightVec_view), 0.0);
 
     vec3 reflectDir = reflect(-lightVec_view, normal_view);

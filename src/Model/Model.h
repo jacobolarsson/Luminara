@@ -3,6 +3,9 @@
 #include "../Mesh/Mesh.h"
 #include "../Material/Material.h"
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 #include <vector>
 
 class Light;
@@ -10,8 +13,7 @@ class Light;
 class Model
 {
 public:
-	Model(const char* path) : m_meshes({})
-	{}
+	Model(const char* path);
 
 	Model(std::vector<Mesh> const& meshes) : m_meshes(meshes)
 	{}
@@ -39,6 +41,9 @@ private:
 	void UploadShaderLightData(Shader const& shader,
 							   std::shared_ptr<Camera> cam,
 							   std::shared_ptr<Light> light) const;
+
+	void ProcessAssimpNode(aiNode* assimpNode, const aiScene* scene);
+	void ProcessAssimpMesh(Mesh& mesh, aiMesh* assimpMesh, const aiScene* scene);
 
 	std::vector<Mesh> m_meshes;
 };

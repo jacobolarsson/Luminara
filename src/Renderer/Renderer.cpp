@@ -2,8 +2,6 @@
 #include "../Camera/Camera.h"
 #include "../Light/Light.h"
 
-#include <unordered_map>
-#include <string>
 #include <glad/glad.h>
 
 std::vector<RenderObject> Renderer::m_renderQueue;
@@ -12,9 +10,9 @@ std::vector<std::shared_ptr<Light>> Renderer::m_lights;
 void Renderer::Initialize()
 {
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_CULL_FACE);
-	//glCullFace(GL_BACK);
-	//glFrontFace(GL_CCW);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glFrontFace(GL_CCW);
 }
 
 void Renderer::Update()

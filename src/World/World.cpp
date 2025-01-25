@@ -7,22 +7,18 @@ std::unordered_set<std::shared_ptr<Object>> World::m_objects;
 
 void World::Initialize()
 {
-	Transform trans;
-	Mesh mesh;
-	mesh.Upload();
+	// Camera
+	std::shared_ptr<Camera> cam = std::make_shared<Camera>();
+	Camera::SetActiveCamera(cam);
 
-	std::vector<Mesh> meshes{ mesh };
-
+	// Shader
 	Shader litShader("Lit", "data/shaders/lit.vert", "data/shaders/lit.frag");
 	Shader lightShader("Light", "data/shaders/light.vert", "data/shaders/light.frag");
 
-	std::shared_ptr<Model> model = std::make_shared<Model>(meshes);
-	std::shared_ptr<Object> obj = std::make_shared<Object>(trans, model);
+	std::shared_ptr<Model> backpackModel = std::make_shared<Model>("data/models/backpack/backpack.obj");
+	std::shared_ptr<Model> sphereModel = std::make_shared<Model>("data/models/sphere/sphere.obj");
 
-	AddObject(obj);
-
-	std::shared_ptr<Camera> cam = std::make_shared<Camera>();
-	Camera::SetActiveCamera(cam);
+	std::shared_ptr<Object> backpackObj = std::make_shared<Object>(Transform(), backpackModel);
 
 	LightData pointLightData;
 	pointLightData.pointData.constAtt = 1.0f;
@@ -35,8 +31,9 @@ void World::Initialize()
 	std::shared_ptr<Object> pointLight = std::make_shared<Light>(pointLightTrans,
 																 LightType::POINT,
 																 pointLightData);
-	pointLight->SetModel(model);
+	pointLight->SetModel(sphereModel);
 
+	AddObject(backpackObj);
 	AddObject(pointLight);
 }
 

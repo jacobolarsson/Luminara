@@ -16,7 +16,7 @@ struct Vertex
 class Mesh
 {
 public:
-	Mesh() : m_vertices(), m_indices(), m_vao(0u), m_vbo(0u), m_ebo(0u) {}
+	Mesh() : m_vertices({}), m_indices({}), m_vao(0u), m_vbo(0u), m_ebo(0u) {}
 
 	Mesh(std::vector<Vertex> const& vertices, std::vector<unsigned> const& indices)
 		: m_vertices(vertices)
@@ -31,6 +31,9 @@ public:
 	void Draw() const;
 
 	inline size_t GetIdxCount() const { return m_indices.size(); }
+
+	inline void AddVertex(Vertex const& vertex) { m_vertices.push_back(vertex); }
+	inline void AddIndex(unsigned idx) { m_indices.push_back(idx); }
 
 private:
 	std::vector<Vertex> m_vertices;

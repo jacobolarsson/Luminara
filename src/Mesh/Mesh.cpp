@@ -4,59 +4,54 @@
 
 void Mesh::Upload()
 {
-    //m_vertices.emplace_back(vec3( 0.5f,  0.5f, 0.0f), vec2(1.0f, 1.0f));
-    //m_vertices.emplace_back(vec3( 0.5f, -0.5f, 0.0f), vec2(1.0f, 0.0f));
-    //m_vertices.emplace_back(vec3(-0.5f, -0.5f, 0.0f), vec2(0.0f, 0.0f));
-    //m_vertices.emplace_back(vec3(-0.5f,  0.5f, 0.0f), vec2(0.0f, 1.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
 
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
 
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
 
-    m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
 
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
 
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
+ //   m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
 
-    m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
-    m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
-
-	m_indices.emplace_back(0);
-	m_indices.emplace_back(1);
-	m_indices.emplace_back(3);
-	m_indices.emplace_back(1);
-	m_indices.emplace_back(2);
-	m_indices.emplace_back(3);
+	//m_indices.emplace_back(0);
+	//m_indices.emplace_back(1);
+	//m_indices.emplace_back(3);
+	//m_indices.emplace_back(1);
+	//m_indices.emplace_back(2);
+	//m_indices.emplace_back(3);
 
 	glGenVertexArrays(1, &m_vao);
 	glGenBuffers(1, &m_vbo);
@@ -80,9 +75,9 @@ void Mesh::Upload()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(sizeof(vec3) * 2));
     glEnableVertexAttribArray(2);
 
-	//// Upload index data
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
-	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * m_indices.size(), &m_indices[0], GL_STATIC_DRAW);  
+	// Upload index data
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned) * m_indices.size(), &m_indices[0], GL_STATIC_DRAW);  
 
 	// Unbind
 	glBindBuffer(GL_ARRAY_BUFFER, 0u);
@@ -93,13 +88,13 @@ void Mesh::Upload()
 void Mesh::BindVao() const
 {
 	glBindVertexArray(m_vao);
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
 }
 
 void Mesh::Draw() const
 {
     m_material.BindTextures();
     BindVao();
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    //glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
+    //glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
 }
