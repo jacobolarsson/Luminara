@@ -48,6 +48,9 @@
     <ClCompile Include="src\Model\Model.cpp">
       <Filter>Model</Filter>
     </ClCompile>
+    <ClCompile Include="src\Resources\Resources.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -97,6 +100,9 @@
     </Filter>
     <Filter Include="Model">
       <UniqueIdentifier>{b8247ac5-2a4b-48b9-a6e0-fe2aba8f3a9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{36d29c5a-293e-4ba7-a7c5-fc29314c8ffb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="src\Model\Model.h">
       <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Resources\Resources.h">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

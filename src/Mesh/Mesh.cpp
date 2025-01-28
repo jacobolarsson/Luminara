@@ -95,6 +95,6 @@ void Mesh::Draw() const
 {
     m_material.BindTextures();
     BindVao();
-    //glDrawArrays(GL_TRIANGLES, 0, 36);
+
     glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
 }

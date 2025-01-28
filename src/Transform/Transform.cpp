@@ -8,7 +8,7 @@ Transform::Transform(vec3 pos /*= { 0.0f, 0.0f, 0.0f }*/,
 	, m_scale(sca)
 {}
 
-mat4x4 Transform::ModelMatrix() const
+mat4x4 Transform::GetModelMatrix() const
 {
 	mat4x4 scale = glm::scale(mat4x4(1.0f), m_scale);
 	mat4x4 rotateX = glm::rotate(mat4x4(1.0f), glm::radians(m_rotation.x), { 1.0f, 0.0f, 0.0f });

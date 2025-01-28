@@ -148,6 +148,7 @@
     <ClCompile Include="src\Model\Model.cpp" />
     <ClCompile Include="src\Object\Object.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Resources\Resources.cpp" />
     <ClCompile Include="src\Shader\Shader.cpp" />
     <ClCompile Include="src\Texture\Texture.cpp" />
     <ClCompile Include="src\Time\Time.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="src\Model\Model.h" />
     <ClInclude Include="src\Object\Object.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
+    <ClInclude Include="src\Resources\Resources.h" />
     <ClInclude Include="src\Shader\Shader.h" />
     <ClInclude Include="src\Texture\Texture.h" />
     <ClInclude Include="src\Time\Time.h" />

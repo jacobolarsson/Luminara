@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include "../Camera/Camera.h"
 #include "../Light/Light.h"
+#include "../Resources/Resources.h"
 
 #include <glad/glad.h>
 
@@ -22,7 +23,8 @@ void Renderer::Update()
 
 	// Retrieve the corresponding shader and draw each object in the render queue
 	for (RenderObject const& renderObj : m_renderQueue) {
-		Shader shader = Shader::Shaders.at(std::string(renderObj.shaderName));
+		Shader shader = Resources::GetShader(renderObj.shaderName);
+
 		Transform transform = renderObj.object->GetTransform();
 		std::shared_ptr<Camera> cam = Camera::GetActiveCamera();
 

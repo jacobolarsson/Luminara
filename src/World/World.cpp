@@ -11,10 +11,6 @@ void World::Initialize()
 	std::shared_ptr<Camera> cam = std::make_shared<Camera>();
 	Camera::SetActiveCamera(cam);
 
-	// Shader
-	Shader litShader("Lit", "data/shaders/lit.vert", "data/shaders/lit.frag");
-	Shader lightShader("Light", "data/shaders/light.vert", "data/shaders/light.frag");
-
 	std::shared_ptr<Model> backpackModel = std::make_shared<Model>("data/models/backpack/backpack.obj");
 	std::shared_ptr<Model> sphereModel = std::make_shared<Model>("data/models/sphere/sphere.obj");
 
@@ -52,7 +48,7 @@ void World::AddObject(std::shared_ptr<Object> obj)
 	}
 
 	bool renderObj = true;
-	const char* shaderName = "Lit";
+	std::string shaderName = "Lit";
 
 	// Check if it's a light, add it to the renderer's lights container if it is
 	std::shared_ptr<Light> lightPtr(std::dynamic_pointer_cast<Light>(obj));

@@ -3,15 +3,11 @@
 class Texture
 {
 public:
-	Texture(const char* filename);
+	Texture(char const* path);
 
-	void Load(const char* filename);
-	void Upload();
+	void Load(char const* path);
 	void Bind() const;
 
 private:
-	unsigned char* m_data;
 	unsigned m_id;
-	int m_width;
-	int m_height;
 };

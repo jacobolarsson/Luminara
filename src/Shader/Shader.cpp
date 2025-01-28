@@ -5,8 +5,6 @@
 #include <fstream>
 #include <sstream>
 
-std::unordered_map<std::string, Shader> Shader::Shaders;
-
 unsigned CompileAttachShader(unsigned shaderId, const char* filename, unsigned shaderType)
 {
     // load shader file
@@ -94,18 +92,18 @@ unsigned LinkProgram(unsigned shaderId)
     return shaderId;
 }
 
-Shader::Shader(const char* name, const char* vertFilename, const char* fragFilename) : m_id(0u)
+Shader::Shader(std::string const& vertFilename, std::string const& fragFilename) : m_id(0u)
 {
     m_id = glCreateProgram();
     if (m_id == 0u) {
         std::cerr << "Unable to create shader handle id." << std::endl;
         return;
     }
-    if (CompileAttachShader(m_id, vertFilename, GL_VERTEX_SHADER) == 0u) {
+    if (CompileAttachShader(m_id, vertFilename.c_str(), GL_VERTEX_SHADER) == 0u) {
         std::cerr << "Unable to compile vertex shader." << std::endl;
         return;
     }
-    if (CompileAttachShader(m_id, fragFilename, GL_FRAGMENT_SHADER) == 0u) {
+    if (CompileAttachShader(m_id, fragFilename.c_str(), GL_FRAGMENT_SHADER) == 0u) {
         std::cerr << "Unable to compile fragment shader." << std::endl;
         return;
     }
@@ -113,8 +111,6 @@ Shader::Shader(const char* name, const char* vertFilename, const char* fragFilen
         std::cerr << "Unable to link shader program." << std::endl;
         return;
     }
-
-    Shader::Shaders.insert({ std::string(name), *this });
 }
 
 void Shader::Use() const
@@ -139,4 +135,9 @@ void Shader::UploadVec3(const char* name, vec3 const& vec) const
 void Shader::UploadFloat(const char* name, float value) const
 {
     glProgramUniform1f(m_id, glGetUniformLocation(m_id, name), value);
+}
+
+void Shader::UploadInt(const char* name, int value) const
+{
+    glProgramUniform1i(m_id, glGetUniformLocation(m_id, name), value);
 }

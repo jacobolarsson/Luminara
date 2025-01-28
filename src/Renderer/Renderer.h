@@ -3,12 +3,13 @@
 #include "../Object/Object.h"
 
 #include <vector>
+#include <string>
 #include <memory>
 
 struct RenderObject
 {
 	std::shared_ptr<Object> object;
-	const char* shaderName;
+	std::string shaderName;
 };
 
 class Light;

@@ -1,16 +1,21 @@
 #include "Model.h"
 #include "../Light/Light.h"
+#include "../Resources/Resources.h"
 
 #include <iostream>
 #include <glad/glad.h>
 
-Model::Model(const char* path) : m_meshes({})
+Model::Model(char const* path) : m_meshes({})
 {
 	Load(path);
 }
 
-void Model::Load(const char* path)
+void Model::Load(char const* path)
 {
+	// Store the directory of the given file
+	std::string pathStr(path);
+	m_directory = pathStr.substr(0, pathStr.find_last_of('/'));
+
 	// read file via ASSIMP
 	Assimp::Importer importer;
 	unsigned flags = aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace;
@@ -31,8 +36,8 @@ void Model::Draw(Shader const& shader,
 				 std::shared_ptr<Camera> cam,
 				 std::shared_ptr<Light> light) const
 {
-	UploadShaderData(shader, transform, cam, light);
 	shader.Use();
+	UploadShaderData(shader, transform, cam, light);
 
 	for (Mesh const& mesh : m_meshes) {
 		mesh.Draw();
@@ -54,7 +59,7 @@ void Model::UploadShaderMtxData(Shader const& shader,
 								Transform const& transform,
 								std::shared_ptr<Camera> cam) const
 {
-	mat4x4 modelMtx = transform.ModelMatrix();
+	mat4x4 modelMtx = transform.GetModelMatrix();
 	mat4x4 modelToViewMtx = cam->ViewMatrix() * modelMtx;
 
 	shader.UploadMat4x4("modelMtx", modelMtx);
@@ -75,13 +80,16 @@ void Model::UploadShaderLightData(Shader const& shader,
 	shader.UploadFloat("constAtt", light->GetData().pointData.constAtt);
 	shader.UploadFloat("linAtt", light->GetData().pointData.linAtt);
 	shader.UploadFloat("quadAtt", light->GetData().pointData.quadAtt);
+
+	shader.UploadInt("material.diffuse", 0);
+	shader.UploadInt("material.specular", 1);
 }
 
 /// <summary>
 /// Process each mesh located at the current node and process all child
 /// nodes recursively
 /// </summary>
-void Model::ProcessAssimpNode(aiNode* assimpNode, const aiScene* scene)
+void Model::ProcessAssimpNode(aiNode const* assimpNode, aiScene const* scene)
 {
 	// Process meshes
 	for (unsigned int i = 0; i < assimpNode->mNumMeshes; i++) {
@@ -100,7 +108,7 @@ void Model::ProcessAssimpNode(aiNode* assimpNode, const aiScene* scene)
 /// <summary>
 /// Load mesh data from assimpMesh to our own Mesh data structure
 /// </summary>
-void Model::ProcessAssimpMesh(Mesh& mesh, aiMesh* assimpMesh, const aiScene* scene)
+void Model::ProcessAssimpMesh(Mesh& mesh, aiMesh const* assimpMesh, aiScene const* scene)
 {
 	// Process vertices
 	for (unsigned i = 0; i < assimpMesh->mNumVertices; i++) {
@@ -113,12 +121,13 @@ void Model::ProcessAssimpMesh(Mesh& mesh, aiMesh* assimpMesh, const aiScene* sce
 		}
 
 		if (assimpMesh->mTextureCoords[0]) { // If the mesh has texture coordinates
-			uv = { assimpMesh->mTextureCoords[0]->x, assimpMesh->mTextureCoords[0]->y };
+			uv = { assimpMesh->mTextureCoords[0][i].x, assimpMesh->mTextureCoords[0][i].y };
 		}
 
 		Vertex v(pos, norm, uv);
 		mesh.AddVertex(v);
 	}
+
 	// Process indices
 	for (unsigned i = 0; i < assimpMesh->mNumFaces; i++) {
 		aiFace assimpFace = assimpMesh->mFaces[i];
@@ -126,5 +135,32 @@ void Model::ProcessAssimpMesh(Mesh& mesh, aiMesh* assimpMesh, const aiScene* sce
 			mesh.AddIndex(assimpFace.mIndices[j]);
 		}
 	}
+
+	// Process materials
+	aiMaterial* assimpMaterial = scene->mMaterials[assimpMesh->mMaterialIndex];
+	Material mat;
+	ProcessAssimpMaterial(mat, assimpMaterial);
+	mesh.SetMaterial(mat);
+
 	mesh.Upload(); // Once we have all vertex data, send it to the GPU
+}
+
+void Model::ProcessAssimpMaterial(Material& material, aiMaterial const* assimpMat)
+{
+	std::vector<std::shared_ptr<Texture>> textures = {};
+
+	aiString texFilename;
+	std::string pathStr = "";
+
+	// Load diffuse texture
+	assimpMat->GetTexture(aiTextureType_DIFFUSE, 0, &texFilename);
+	pathStr = m_directory + '/' + std::string(texFilename.C_Str());
+	textures.push_back(Resources::GetTexture(pathStr));
+
+	// Load specular texture
+	assimpMat->GetTexture(aiTextureType_SPECULAR, 0, &texFilename);
+	pathStr = m_directory + '/' + std::string(texFilename.C_Str());
+	textures.push_back(Resources::GetTexture(pathStr));
+
+	material.SetTextures(textures);
 }

@@ -14,8 +14,9 @@ public:
 		: m_textures(textures)
 	{}
 
-	void UploadTextures() const;
 	void BindTextures() const;
+
+	inline void SetTextures(std::vector<std::shared_ptr<Texture>> textures) { m_textures = textures; }
 
 private:
 	std::vector<std::shared_ptr<Texture>> m_textures;

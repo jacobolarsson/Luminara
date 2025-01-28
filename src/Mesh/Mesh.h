@@ -32,6 +32,7 @@ public:
 
 	inline size_t GetIdxCount() const { return m_indices.size(); }
 
+	inline void SetMaterial(Material const& material) { m_material = material; }
 	inline void AddVertex(Vertex const& vertex) { m_vertices.push_back(vertex); }
 	inline void AddIndex(unsigned idx) { m_indices.push_back(idx); }
 

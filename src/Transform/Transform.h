@@ -9,7 +9,7 @@ public:
 			  vec3 rot = { 0.0f, 0.0f, 0.0f },
 			  vec3 sca = { 1.0f, 1.0f, 1.0f });
 
-	mat4x4 ModelMatrix() const;
+	mat4x4 GetModelMatrix() const;
 
 	inline vec3 GetPosition() const { return m_position; }
 	inline vec3 GetRotation() const { return m_rotation; }

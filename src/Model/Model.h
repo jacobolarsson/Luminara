@@ -7,18 +7,19 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include <vector>
+#include <string>
 
 class Light;
 
 class Model
 {
 public:
-	Model(const char* path);
+	Model(char const* path);
 
-	Model(std::vector<Mesh> const& meshes) : m_meshes(meshes)
+	Model(std::vector<Mesh> const& meshes) : m_meshes(meshes), m_directory("")
 	{}
 
-	void Load(const char* path);
+	void Load(char const* path);
 	void Draw(Shader const& shader,
 			  Transform const& transform,
 			  std::shared_ptr<Camera> cam,
@@ -42,8 +43,10 @@ private:
 							   std::shared_ptr<Camera> cam,
 							   std::shared_ptr<Light> light) const;
 
-	void ProcessAssimpNode(aiNode* assimpNode, const aiScene* scene);
-	void ProcessAssimpMesh(Mesh& mesh, aiMesh* assimpMesh, const aiScene* scene);
+	void ProcessAssimpNode(aiNode const* assimpNode, aiScene const* scene);
+	void ProcessAssimpMesh(Mesh& mesh, aiMesh const* assimpMesh, aiScene const* scene);
+	void ProcessAssimpMaterial(Material& material, aiMaterial const* assimpMat);
 
 	std::vector<Mesh> m_meshes;
+	std::string m_directory;
 };
