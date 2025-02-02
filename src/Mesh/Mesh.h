@@ -6,10 +6,18 @@
 
 struct Vertex 
 {
-	Vertex(vec3 pos, vec3 norm, vec2 uv) : position(pos), normal(norm), UV(uv) {}
+	Vertex(vec3 pos, vec3 norm, vec3 tan, vec3 bitan, vec2 uv)
+		: position(pos)
+		, normal(norm)
+		, tangent(tan)
+		, bitangent(bitan)
+		, UV(uv) 
+	{}
 
 	vec3 position;
 	vec3 normal;
+	vec3 tangent;
+	vec3 bitangent;
 	vec2 UV;
 };
 

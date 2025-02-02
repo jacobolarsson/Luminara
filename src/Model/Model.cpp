@@ -60,10 +60,9 @@ void Model::UploadShaderMtxData(Shader const& shader,
 								std::shared_ptr<Camera> cam) const
 {
 	mat4x4 modelMtx = transform.GetModelMatrix();
-	mat4x4 modelToViewMtx = cam->ViewMatrix() * modelMtx;
 
 	shader.UploadMat4x4("modelMtx", modelMtx);
-	shader.UploadMat4x4("normalMtx", glm::transpose(glm::inverse(modelToViewMtx)));
+	shader.UploadMat4x4("normalMtx", glm::transpose(glm::inverse(modelMtx)));
 	shader.UploadMat4x4("viewMtx", cam->ViewMatrix());
 	shader.UploadMat4x4("projectionMtx", cam->ProjectionMatrix());
 }
@@ -74,15 +73,18 @@ void Model::UploadShaderLightData(Shader const& shader,
 {
 	vec3 lightPos_world = light->GetTransform().GetPosition();
 
-	shader.UploadVec3("lightPos_view", cam->ViewMatrix() * vec4(lightPos_world, 1.0f));
+	shader.UploadVec3("lightPos_world", lightPos_world);
 	shader.UploadVec3("lightColor", light->GetData().pointData.color);
+
+	shader.UploadVec3("viewPos_world", cam->GetPosition());
 		  
 	shader.UploadFloat("constAtt", light->GetData().pointData.constAtt);
 	shader.UploadFloat("linAtt", light->GetData().pointData.linAtt);
 	shader.UploadFloat("quadAtt", light->GetData().pointData.quadAtt);
 
-	shader.UploadInt("material.diffuse", 0);
-	shader.UploadInt("material.specular", 1);
+	shader.UploadInt("material.diffuseTex", 0);
+	shader.UploadInt("material.specularTex", 1);
+	shader.UploadInt("material.normalMap", 2);
 }
 
 /// <summary>
@@ -114,6 +116,8 @@ void Model::ProcessAssimpMesh(Mesh& mesh, aiMesh const* assimpMesh, aiScene cons
 	for (unsigned i = 0; i < assimpMesh->mNumVertices; i++) {
 		vec3 pos(assimpMesh->mVertices[i].x, assimpMesh->mVertices[i].y, assimpMesh->mVertices[i].z);
 		vec3 norm(0.0f, 0.0f, 0.0f);
+		vec3 tan(0.0f, 0.0f, 0.0f);
+		vec3 bitan(0.0f, 0.0f, 0.0f);
 		vec2 uv(0.0f, 0.0f);
 
 		if (assimpMesh->HasNormals()) {
@@ -122,9 +126,11 @@ void Model::ProcessAssimpMesh(Mesh& mesh, aiMesh const* assimpMesh, aiScene cons
 
 		if (assimpMesh->mTextureCoords[0]) { // If the mesh has texture coordinates
 			uv = { assimpMesh->mTextureCoords[0][i].x, assimpMesh->mTextureCoords[0][i].y };
-		}
+			tan = { assimpMesh->mTangents[i].x, assimpMesh->mTangents[i].y, assimpMesh->mTangents[i].z };
+			bitan = { assimpMesh->mBitangents[i].x, assimpMesh->mBitangents[i].y, assimpMesh->mBitangents[i].z };
+		} 
 
-		Vertex v(pos, norm, uv);
+		Vertex v(pos, norm, tan, bitan, uv);
 		mesh.AddVertex(v);
 	}
 
@@ -159,6 +165,11 @@ void Model::ProcessAssimpMaterial(Material& material, aiMaterial const* assimpMa
 
 	// Load specular texture
 	assimpMat->GetTexture(aiTextureType_SPECULAR, 0, &texFilename);
+	pathStr = m_directory + '/' + std::string(texFilename.C_Str());
+	textures.push_back(Resources::GetTexture(pathStr));
+
+	// Load normal map
+	assimpMat->GetTexture(aiTextureType_HEIGHT, 0, &texFilename);
 	pathStr = m_directory + '/' + std::string(texFilename.C_Str());
 	textures.push_back(Resources::GetTexture(pathStr));
 

@@ -1,18 +1,22 @@
 #version 460 core
 
-in vec3 fragPos_view;
-in vec2 UV;
-in vec3 normal_view;
-
 struct Material 
 {
-    sampler2D diffuse;
-    sampler2D specular;    
+    sampler2D diffuseTex;
+    sampler2D specularTex;    
+    sampler2D normalMap;    
 }; 
 
 uniform Material material;
 
-uniform vec3 lightPos_view;
+in VsOut 
+{
+    vec3 fragPos_tan;
+    vec3 lightPos_tan;
+    vec3 viewPos_tan;
+    vec2 UV; 
+} fsIn;
+
 uniform vec3 lightColor;
 uniform float constAtt;
 uniform float linAtt;
@@ -22,25 +26,34 @@ out vec4 FragColor;
 
 void main()
 {
-    vec3 lightVec_view = normalize(lightPos_view - fragPos_view);
-    vec3 viewVec = normalize(-fragPos_view);
+    vec3 lightVec_tan = normalize(fsIn.lightPos_tan - fsIn.fragPos_tan);
+    vec3 viewVec_tan = normalize(fsIn.viewPos_tan - fsIn.fragPos_tan);
+
+    vec3 normal_tan = texture(material.normalMap, fsIn.UV).rgb;
+    // Change from the [0, 1] component range to [-1, 1]
+    normal_tan = normalize(normal_tan * 2.0 - 1.0); 
 
     vec3 ambient = 0.3 * lightColor;
-    vec3 diffuse = lightColor * max(dot(normal_view, lightVec_view), 0.0);
+    vec3 diffuse = lightColor * max(dot(normal_tan, lightVec_tan), 0.0);
 
-    vec3 halfwayVec = normalize(lightVec_view + viewVec);
-    float spec = pow(max(dot(normal_view, halfwayVec), 0.0), 128);
+    vec3 halfwayVec = normalize(lightVec_tan + viewVec_tan);
+    float spec = pow(max(dot(normal_tan, halfwayVec), 0.0), 128);
     vec3 specular = 0.5 * spec * lightColor;
 
-    float dist = length(lightPos_view - fragPos_view);
+    float dist = length(fsIn.lightPos_tan - fsIn.fragPos_tan);
     float att = 1.0 / (constAtt + linAtt * dist + quadAtt * (dist * dist));    
 
     ambient *= att;  
     diffuse *= att;
     specular *= att;   
 
-    vec3 result = (ambient + diffuse) * texture(material.diffuse, UV).rgb;
-    result += specular * texture(material.specular, UV).rgb;
+    vec4 texColor = texture(material.diffuseTex, fsIn.UV);
+    if (texColor.a < 0.5) {
+        discard;
+    }
+
+    vec3 result = (ambient + diffuse) * vec3(texColor);
+    result += specular * texture(material.specularTex, fsIn.UV).rgb;
 
     FragColor = vec4(result, 1.0);
 } 

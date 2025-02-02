@@ -41,6 +41,5 @@ void Camera::SetRotation(vec3 rotation)
 	} else if (rotation.x < -89.0f) {
 		rotation.x = -89.0f;
 	}
-
 	m_rotation = rotation;
 }

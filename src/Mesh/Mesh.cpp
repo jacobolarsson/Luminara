@@ -4,55 +4,6 @@
 
 void Mesh::Upload()
 {
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f,  0.0f, -1.0f), vec2(0.0f, 0.0f));
-
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3( 0.0f,  0.0f,  1.0f), vec2(0.0f, 0.0f));
-
- //   m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3(-1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 1.0f,  0.0f,  0.0f), vec2(0.0f, 0.0f));
-
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f, -0.5f, -0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f, -0.5f,  0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f,  0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f, -0.5f, -0.5f), vec3( 0.0f, -1.0f,  0.0f), vec2(0.0f, 0.0f));
-
- //   m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f, -0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3( 0.5f,  0.5f,  0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f,  0.5f,  0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
- //   m_vertices.emplace_back(vec3(-0.5f,  0.5f, -0.5f), vec3( 0.0f,  1.0f,  0.0f), vec2(0.0f, 0.0f));
-
-	//m_indices.emplace_back(0);
-	//m_indices.emplace_back(1);
-	//m_indices.emplace_back(3);
-	//m_indices.emplace_back(1);
-	//m_indices.emplace_back(2);
-	//m_indices.emplace_back(3);
-
 	glGenVertexArrays(1, &m_vao);
 	glGenBuffers(1, &m_vbo);
 	glGenBuffers(1, &m_ebo);
@@ -64,16 +15,24 @@ void Mesh::Upload()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * m_vertices.size(), &m_vertices[0], GL_STATIC_DRAW);
 
 	// Set vertex position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(0));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, Vertex::position)));
 	glEnableVertexAttribArray(0);
 
     // Set vertex normal attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(sizeof(vec3)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, Vertex::normal)));
     glEnableVertexAttribArray(1);
 
+	// Set vertex tangent attribute
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, Vertex::tangent)));
+	glEnableVertexAttribArray(2);
+
+	// Set vertex bitangent attribute
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, Vertex::bitangent)));
+	glEnableVertexAttribArray(3);
+
     // Set vertex UV attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(sizeof(vec3) * 2));
-    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(4, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, Vertex::UV)));
+    glEnableVertexAttribArray(4);
 
 	// Upload index data
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
