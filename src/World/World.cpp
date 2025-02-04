@@ -12,12 +12,12 @@ void World::Initialize()
 	Camera::SetActiveCamera(cam);
 
 	std::shared_ptr<Model> sponzaModel = std::make_shared<Model>("data/models/Sponza-master/sponza.obj");
-	//std::shared_ptr<Model> backpackModel = std::make_shared<Model>("data/models/backpack/backpack.obj");
+	std::shared_ptr<Model> backpackModel = std::make_shared<Model>("data/models/backpack/backpack.obj");
 	std::shared_ptr<Model> sphereModel = std::make_shared<Model>("data/models/sphere/sphere.obj");
 
-	//std::shared_ptr<Object> backpackObj = std::make_shared<Object>(Transform(), backpackModel);
+	std::shared_ptr<Object> backpackObj = std::make_shared<Object>(Transform(), backpackModel);
 	std::shared_ptr<Object> sponzaObj = std::make_shared<Object>(Transform(), sponzaModel);
-	sponzaObj->SetTransform(Transform({ 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 0.01f, 0.01f, 0.01f }));
+	sponzaObj->SetTransform(Transform({ 0.0f, -1.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 0.01f, 0.01f, 0.01f }));
 
 	LightData pointLightData;
 	pointLightData.pointData.constAtt = 1.0f;
@@ -25,7 +25,7 @@ void World::Initialize()
 	pointLightData.pointData.quadAtt = 0.032f;
 	pointLightData.pointData.color = { 1.0f, 1.0f, 1.0f };
 
-	Transform pointLightTrans({ -3.0f, 0.0f, 0.0f }, {0.0f, 0.0f, 0.0f}, {0.1f, 0.1f, 0.1f});
+	Transform pointLightTrans({ -1.5f, 0.0f, 0.0f }, {0.0f, 0.0f, 0.0f}, {0.1f, 0.1f, 0.1f});
 
 	std::shared_ptr<Object> pointLight = std::make_shared<Light>(pointLightTrans,
 																 LightType::POINT,

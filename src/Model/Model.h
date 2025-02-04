@@ -46,6 +46,7 @@ private:
 	void ProcessAssimpNode(aiNode const* assimpNode, aiScene const* scene);
 	void ProcessAssimpMesh(Mesh& mesh, aiMesh const* assimpMesh, aiScene const* scene);
 	void ProcessAssimpMaterial(Material& material, aiMaterial const* assimpMat);
+	std::shared_ptr<Texture> ProcessAssimpTexture(aiMaterial const* assimpMat, aiTextureType assimpTexType);
 
 	std::vector<Mesh> m_meshes;
 	std::string m_directory;

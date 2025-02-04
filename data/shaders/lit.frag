@@ -2,6 +2,7 @@
 
 struct Material 
 {
+    sampler2D ambientTex;
     sampler2D diffuseTex;
     sampler2D specularTex;    
     sampler2D normalMap;    
@@ -47,12 +48,13 @@ void main()
     diffuse *= att;
     specular *= att;   
 
-    vec4 texColor = texture(material.diffuseTex, fsIn.UV);
-    if (texColor.a < 0.5) {
+    vec4 diffColor = texture(material.diffuseTex, fsIn.UV);
+    if (diffColor.a < 0.5) {
         discard;
     }
 
-    vec3 result = (ambient + diffuse) * vec3(texColor);
+    vec3 result = diffuse * vec3(diffColor);
+    result += ambient * texture(material.ambientTex, fsIn.UV).rgb;
     result += specular * texture(material.specularTex, fsIn.UV).rgb;
 
     FragColor = vec4(result, 1.0);

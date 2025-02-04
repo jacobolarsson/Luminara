@@ -18,7 +18,7 @@ void Model::Load(char const* path)
 
 	// read file via ASSIMP
 	Assimp::Importer importer;
-	unsigned flags = aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace;
+	unsigned flags = aiProcess_Triangulate | aiProcess_GenSmoothNormals | /*aiProcess_FlipUVs |*/ aiProcess_CalcTangentSpace;
 	const aiScene* scene = importer.ReadFile(path, flags);
 
 	// check for errors
@@ -82,9 +82,10 @@ void Model::UploadShaderLightData(Shader const& shader,
 	shader.UploadFloat("linAtt", light->GetData().pointData.linAtt);
 	shader.UploadFloat("quadAtt", light->GetData().pointData.quadAtt);
 
-	shader.UploadInt("material.diffuseTex", 0);
-	shader.UploadInt("material.specularTex", 1);
-	shader.UploadInt("material.normalMap", 2);
+	shader.UploadInt("material.ambientTex", 0);
+	shader.UploadInt("material.diffuseTex", 1);
+	shader.UploadInt("material.specularTex", 2);
+	shader.UploadInt("material.normalMap", 3);
 }
 
 /// <summary>
@@ -158,20 +159,26 @@ void Model::ProcessAssimpMaterial(Material& material, aiMaterial const* assimpMa
 	aiString texFilename;
 	std::string pathStr = "";
 
-	// Load diffuse texture
-	assimpMat->GetTexture(aiTextureType_DIFFUSE, 0, &texFilename);
-	pathStr = m_directory + '/' + std::string(texFilename.C_Str());
-	textures.push_back(Resources::GetTexture(pathStr));
-
-	// Load specular texture
-	assimpMat->GetTexture(aiTextureType_SPECULAR, 0, &texFilename);
-	pathStr = m_directory + '/' + std::string(texFilename.C_Str());
-	textures.push_back(Resources::GetTexture(pathStr));
-
-	// Load normal map
-	assimpMat->GetTexture(aiTextureType_HEIGHT, 0, &texFilename);
-	pathStr = m_directory + '/' + std::string(texFilename.C_Str());
-	textures.push_back(Resources::GetTexture(pathStr));
+	textures.push_back(ProcessAssimpTexture(assimpMat, aiTextureType_AMBIENT));  // Load ambient texture
+	textures.push_back(ProcessAssimpTexture(assimpMat, aiTextureType_DIFFUSE));  // Load diffuse texture
+	textures.push_back(ProcessAssimpTexture(assimpMat, aiTextureType_SPECULAR)); // Load specular texture
+	textures.push_back(ProcessAssimpTexture(assimpMat, aiTextureType_HEIGHT));   // Load normal map
 
 	material.SetTextures(textures);
+}
+
+std::shared_ptr<Texture> Model::ProcessAssimpTexture(aiMaterial const* assimpMat, aiTextureType assimpTexType)
+{
+	aiString texFilename;
+	assimpMat->GetTexture(assimpTexType, 0, &texFilename);
+
+	std::string texFilenameStr(texFilename.C_Str());
+	// Return null if the texture type could not be found
+	if (texFilenameStr.empty()) { 
+		return nullptr;
+	}
+
+	std::string pathStr = m_directory + '/' + texFilenameStr;
+
+	return Resources::GetTexture(pathStr);
 }

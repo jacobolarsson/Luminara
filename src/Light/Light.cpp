@@ -14,7 +14,6 @@ void Light::Update()
 {
     vec3 pos = m_transform.GetPosition();
 
-    float r = glm::length(pos);
     vec3 rotationaxis = glm::cross(glm::cross(pos, glm::vec3(0.0f, 1.0f, 0.0f)), pos);
     vec4 rotatedRadialVec = glm::rotate(glm::mat4(1.0f), -Time::GetDeltaTime(), rotationaxis) * glm::vec4(pos, 0.0f);
 

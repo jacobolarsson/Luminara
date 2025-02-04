@@ -44,6 +44,8 @@ void Texture::Load(const char* path)
         glGenerateMipmap(GL_TEXTURE_2D);
         stbi_image_free(data);
     }
+
+    glBindTexture(GL_TEXTURE_2D, 0u);
 }
 
 void Texture::Bind() const

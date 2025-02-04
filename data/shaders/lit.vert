@@ -25,11 +25,11 @@ void main()
 {
     vec3 norm_world = normalize(mat3(normalMtx) * inNormal);
     vec3 tang_world = normalize(mat3(normalMtx) * inTangent);
-    vec3 bitan_world = normalize(mat3(normalMtx) * inBitangent);
+//    vec3 bitan_world = normalize(mat3(normalMtx) * inBitangent);
 
     // Re-orthogonalize the tangent vector due to possible averaging while loading the model
     tang_world = normalize(tang_world - dot(tang_world, norm_world) * norm_world);
-//    vec3 bitan_world = normalize(cross(norm_world, tang_world));
+    vec3 bitan_world = normalize(cross(norm_world, tang_world));
 
     mat3 tangentMtx = transpose(mat3(tang_world, bitan_world, norm_world));
 
