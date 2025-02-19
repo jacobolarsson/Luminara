@@ -20,12 +20,17 @@ void World::Initialize()
 	sponzaObj->SetTransform(Transform({ 0.0f, -1.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 0.01f, 0.01f, 0.01f }));
 
 	LightData pointLightData;
-	pointLightData.pointData.constAtt = 1.0f;
-	pointLightData.pointData.linAtt = 0.09f;
-	pointLightData.pointData.quadAtt = 0.032f;
+	//pointLightData.pointData.constAtt = 1.0f;
+	//pointLightData.pointData.linAtt = 0.09f;
+	//pointLightData.pointData.quadAtt = 0.032f;
+
+	pointLightData.pointData.constAtt = 0.8f;
+	pointLightData.pointData.linAtt = 0.08f;
+	pointLightData.pointData.quadAtt = 0.016f;
+
 	pointLightData.pointData.color = { 1.0f, 1.0f, 1.0f };
 
-	Transform pointLightTrans({ -1.5f, 0.0f, 0.0f }, {0.0f, 0.0f, 0.0f}, {0.1f, 0.1f, 0.1f});
+	Transform pointLightTrans({ 7.0f, 0.0f, 0.0f }, {0.0f, 0.0f, 0.0f}, {0.1f, 0.1f, 0.1f});
 
 	std::shared_ptr<Object> pointLight = std::make_shared<Light>(pointLightTrans,
 																 LightType::POINT,

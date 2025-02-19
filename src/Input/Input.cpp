@@ -2,6 +2,7 @@
 #include "../Window/Window.h"	
 #include "../Camera/Camera.h"	
 #include "../Time/Time.h"
+#include "../Renderer/Renderer.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -57,9 +58,19 @@ void OnMouseMove(GLFWwindow* window, double xposIn, double yposIn)
     activeCam->SetDirection(dir);
 }
 
+void OnKeyPressed(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    // Toggle wireframe mode
+    if (key == GLFW_KEY_E && action == GLFW_PRESS) {
+        RenderConfig newConfig = { !Renderer::GetConfig().wireframeMode };
+        Renderer::SetConfig(newConfig);
+    }
+}
+
 void Input::Initialize()
 {
     glfwSetCursorPosCallback(Window::GetWindow(), OnMouseMove);
+    glfwSetKeyCallback(Window::GetWindow(), OnKeyPressed);
 }
 
 void Input::Update()
@@ -68,16 +79,15 @@ void Input::Update()
 		glfwSetWindowShouldClose(Window::GetWindow(), true);
 	}
 
-	UpdateCamera();
-
+    UpdateActiveCamera();
 	glfwPollEvents();
 }
 
-void Input::UpdateCamera()
+void Input::UpdateActiveCamera()
 {
 	vec3 camDir = Camera::GetActiveCamera()->GetDirection();
 	vec3 camRight = glm::normalize(glm::cross(camDir, { 0.0f, 1.0f, 0.0f }));
-	float camSpeed = 2.0f * Time::GetDeltaTime();
+	float camSpeed = 3.0f * Time::GetDeltaTime();
 
 	if (glfwGetKey(Window::GetWindow(), GLFW_KEY_W) == GLFW_PRESS) {
 		Camera::GetActiveCamera()->Move(camDir, camSpeed);

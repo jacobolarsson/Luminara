@@ -7,6 +7,7 @@
 
 std::vector<RenderObject> Renderer::m_renderQueue;
 std::vector<std::shared_ptr<Light>> Renderer::m_lights;
+RenderConfig Renderer::m_config;
 
 void Renderer::Initialize()
 {
@@ -49,4 +50,12 @@ void Renderer::GetViewportSize(int& width, int& height)
 
 	width = viewportData[2];
 	height = viewportData[3];
+}
+
+void Renderer::SetConfig(RenderConfig const& config)
+{
+	m_config = config;
+
+	int mode = m_config.wireframeMode ? GL_LINE : GL_FILL;
+	glPolygonMode(GL_FRONT_AND_BACK, mode);
 }

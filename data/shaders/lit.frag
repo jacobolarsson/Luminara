@@ -34,7 +34,7 @@ void main()
     // Change from the [0, 1] component range to [-1, 1]
     normal_tan = normalize(normal_tan * 2.0 - 1.0); 
 
-    vec3 ambient = 0.3 * lightColor;
+    vec3 ambient = 0.4 * lightColor;
     vec3 diffuse = lightColor * max(dot(normal_tan, lightVec_tan), 0.0);
 
     vec3 halfwayVec = normalize(lightVec_tan + viewVec_tan);

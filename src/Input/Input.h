@@ -21,6 +21,6 @@ public:
 	inline static void SetMouseData(MouseData const& mouseData) { m_mouseData = mouseData; }
 
 private:
-	static void UpdateCamera();
+	static void UpdateActiveCamera();
 	static MouseData m_mouseData;
 };

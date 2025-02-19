@@ -16,4 +16,5 @@ public:
 private:
 	LightType m_type;
 	LightData m_data;
+	float m_timer;
 };
